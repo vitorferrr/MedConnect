@@ -12,7 +12,7 @@ public class PurgeOldEventsBatch implements Database.Batchable<sObject> {
     }
 
     public void execute(Database.BatchableContext BC, List<Medical_Event__c> scope) {
-        MedicalEventBatchHandler.deleteOldEvents(scope);
+        MedicalEventBatchHandler.deletarEventosAntigos(scope);
     }
 
     public void finish(Database.BatchableContext BC) {

@@ -30,7 +30,7 @@ private class PurgeOldEventsBatchTest {
 
     @isTest
     static void testeExecucaoBatchExclusao() {
-        System.assertEquals(201, [SELECT COUNT() FROM Medical_Event__c], 'A massa de dados inicial deveria ter 201 registros.');
+        System.assertEquals(201, [SELECT COUNT() FROM Medical_Event__c], 'A quantia de dados inicial deveria ter 201 registros.');
 
         Test.startTest();
         // Instancia e executa o lote criado no Milestone 6
