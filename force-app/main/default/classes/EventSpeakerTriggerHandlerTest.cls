@@ -1,6 +1,7 @@
 @isTest
 private class EventSpeakerTriggerHandlerTest {
     
+    //Teste do Milestone 3
     @isTest
     static void testPreventDuplicateSpeaker() {
         Medical_Event__c event1 = TestDataFactory.createEvent('Congresso de Cardiologia', true);
@@ -30,5 +31,25 @@ private class EventSpeakerTriggerHandlerTest {
         Test.stopTest();
 
         System.assert(errorThrown, 'O teste falhou: O sistema permitiu agendar o palestrante em dois eventos simultâneos.');
+    }
+
+    //Teste do Milestone 4
+    @isTest
+    static void testSendConfirmationEmail() {
+        Medical_Event__c event = TestDataFactory.createEvent('Simpósio de Inovação Médica', true);
+        Speaker__c speaker = TestDataFactory.createSpeaker(true);
+        
+        Event_Speaker__c es = new Event_Speaker__c(
+            Medical_Event__c = event.Id,
+            Speaker__c = speaker.Id
+        );
+
+        Test.startTest();
+        insert es;
+        
+        Integer emailInvocations = Limits.getEmailInvocations();
+        Test.stopTest();
+        
+        System.assertEquals(1, emailInvocations, 'O sistema deveria ter disparado exatamente 1 e-mail de confirmação.');
     }
 }
