@@ -1,7 +1,3 @@
-/**
- * @description Handler class for Event_Speaker__c Trigger
- * @author      Vitor Ferreira
- */
 public inherited sharing class EventSpeakerTriggerHandler {
     
     //Milestone 3: Verifica se o palestrante já está inserido em outro evento
@@ -60,7 +56,7 @@ public inherited sharing class EventSpeakerTriggerHandler {
             if (esIds.isEmpty()) return;
 
             List<Event_Speaker__c> recordsWithData = [
-                SELECT Id, Speaker__r.Name, Speaker__r.Email__c, Medical_Event__r.Name, Medical_Event__r.Start__c
+                SELECT Id, Speaker__r.Name, Speaker__r.Email__c, Medical_Event__r.Name__c, Medical_Event__r.Start__c
                 FROM Event_Speaker__c
                 WHERE Id IN :esIds
             ];
@@ -72,10 +68,10 @@ public inherited sharing class EventSpeakerTriggerHandler {
                     Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
                     
                     mail.setToAddresses(new String[] { es.Speaker__r.Email__c });
-                    mail.setSubject('Confirmação de Palestra: ' + es.Medical_Event__r.Name);
+                    mail.setSubject('Confirmação de Palestra: ' + es.Medical_Event__r.Name__c);
                     
                     String body = 'Olá ' + es.Speaker__r.Name + ',\n\n' +
-                                  'Sua participação no evento "' + es.Medical_Event__r.Name + '" foi confirmada!\n' +
+                                  'Sua participação no evento "' + es.Medical_Event__r.Name__c + '" foi confirmada!\n' +
                                   'Data de Início: ' + es.Medical_Event__r.Start__c + '\n\n' +
                                   'Obrigado,\nEquipe OrganizaMed';
                                   
