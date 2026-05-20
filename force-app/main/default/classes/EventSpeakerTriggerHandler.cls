@@ -4,6 +4,7 @@
  */
 public inherited sharing class EventSpeakerTriggerHandler {
     
+    //Milestone 3: Verifica se o palestrante já está inserido em outro evento
     public static void checkDuplicateBookings(List<Event_Speaker__c> newList, Map<Id, Event_Speaker__c> oldMap) {
         try {
             Set<Id> speakerIds = new Set<Id>();
@@ -42,6 +43,53 @@ public inherited sharing class EventSpeakerTriggerHandler {
             
         } catch (Exception ex) {
             ErrorLogService.createErrorLog(Datetime.now(), ex.getStackTraceString(), 'EventSpeakerTriggerHandler');
+        }
+    }
+
+    //Milestone 4: envia o email de confirmação
+    public static void sendConfirmationEmail(List<Event_Speaker__c> newList) {
+        try {
+            Set<Id> esIds = new Set<Id>();
+            
+            for (Event_Speaker__c es : newList) {
+                if (es.Id != null) {
+                    esIds.add(es.Id);
+                }
+            }
+
+            if (esIds.isEmpty()) return;
+
+            List<Event_Speaker__c> recordsWithData = [
+                SELECT Id, Speaker__r.Name, Speaker__r.Email__c, Medical_Event__r.Name, Medical_Event__r.Start__c
+                FROM Event_Speaker__c
+                WHERE Id IN :esIds
+            ];
+
+            List<Messaging.SingleEmailMessage> emailsToSend = new List<Messaging.SingleEmailMessage>();
+
+            for (Event_Speaker__c es : recordsWithData) {
+                if (es.Speaker__r.Email__c != null) {
+                    Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+                    
+                    mail.setToAddresses(new String[] { es.Speaker__r.Email__c });
+                    mail.setSubject('Confirmação de Palestra: ' + es.Medical_Event__r.Name);
+                    
+                    String body = 'Olá ' + es.Speaker__r.Name + ',\n\n' +
+                                  'Sua participação no evento "' + es.Medical_Event__r.Name + '" foi confirmada!\n' +
+                                  'Data de Início: ' + es.Medical_Event__r.Start__c + '\n\n' +
+                                  'Obrigado,\nEquipe OrganizaMed';
+                                  
+                    mail.setPlainTextBody(body);
+                    emailsToSend.add(mail);
+                }
+            }
+
+            if (!emailsToSend.isEmpty()) {
+                Messaging.sendEmail(emailsToSend);
+            }
+
+        } catch (Exception ex) {
+            ErrorLogService.createErrorLog(Datetime.now(), ex.getStackTraceString(), 'EventSpeakerTriggerHandler.sendConfirmationEmail');
         }
     }
 }
