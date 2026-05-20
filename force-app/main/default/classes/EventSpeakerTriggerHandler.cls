@@ -1,3 +1,5 @@
+//Associa palestrantes aos eventos, garantindo que não haja problemas e enviando email de confirmação
+
 public inherited sharing class EventSpeakerTriggerHandler {
     
     //Milestone 3: Verifica se o palestrante já está inserido em outro evento

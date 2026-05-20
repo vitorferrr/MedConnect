@@ -1,3 +1,5 @@
+//Classe teste unitário da classe organizadora de eventoss
+
 @isTest
 private class EventSpeakerTriggerHandlerTest {
     
