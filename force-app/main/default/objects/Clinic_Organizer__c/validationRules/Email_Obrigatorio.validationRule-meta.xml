@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_Obrigatorio</fullName>
+    <active>true</active>
+    <description>Impede salvar o registro sem e-mail.</description>
+    <errorConditionFormula>ISBLANK( Email__c )</errorConditionFormula>
+    <errorMessage>Informe o e-mail antes de salvar.</errorMessage>
+</ValidationRule>

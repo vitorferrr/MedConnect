@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Address__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Relacionamento com o local físico onde o organizador atua.</description>
+    <inlineHelpText>Selecione o endereço deste organizador.</inlineHelpText>
+    <label>Address</label>
+    <referenceTo>Location__c</referenceTo>
+    <relationshipName>Clinic_Organizers</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

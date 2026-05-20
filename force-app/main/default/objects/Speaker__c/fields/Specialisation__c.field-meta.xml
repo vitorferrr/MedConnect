@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Specialisation__c</fullName>
+    <description>Área de especialidade médica ou técnica do palestrante.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Descreva a área de atuação (ex: Cardiologia).</inlineHelpText>
+    <label>Specialisation</label>
+    <length>80</length>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

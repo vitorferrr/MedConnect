@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recurring_Frequency_Required</fullName>
+    <active>true</active>
+    <description>Se Recurring estiver marcado, Frequency deve ser preenchido. Se Recurring estiver desmarcado, Frequency não pode ser selecionado.</description>
+    <errorConditionFormula>OR(
+  AND(Recurring__c, ISPICKVAL(Frequency__c, &quot;&quot;)),
+  AND(NOT(Recurring__c), NOT(ISPICKVAL(Frequency__c, &quot;&quot;)))
+)</errorConditionFormula>
+    <errorMessage>Preencha Frequency somente quando Recurring estiver marcado.</errorMessage>
+</ValidationRule>

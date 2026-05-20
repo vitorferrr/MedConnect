@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>People_Attending__c</fullName>
+    <description>Campo de resumo que conta o total de inscritos vinculados.</description>
+    <inlineHelpText>Total de participantes confirmados para este evento.</inlineHelpText>
+    <label># People Attending</label>
+    <summaryForeignKey>Event_Attendee__c.Medical_Event__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

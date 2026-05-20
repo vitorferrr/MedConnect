@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Address__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>Localização geográfica principal do participante.</description>
+    <inlineHelpText>Selecione o endereço associado a este participante.</inlineHelpText>
+    <label>Address</label>
+    <referenceTo>Location__c</referenceTo>
+    <relationshipLabel>Attendees</relationshipLabel>
+    <relationshipName>Attendees</relationshipName>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

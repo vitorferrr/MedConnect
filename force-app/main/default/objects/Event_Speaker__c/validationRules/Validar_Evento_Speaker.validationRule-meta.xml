@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validar_Evento_Speaker</fullName>
+    <active>true</active>
+    <description>Impede associar um palestrante a um evento médico que já terminou ou que não está ativo.</description>
+    <errorConditionFormula>OR(
+  Medical_Event__r.End__c &lt;= NOW(),
+  NOT(Medical_Event__r.Live__c)
+)</errorConditionFormula>
+    <errorMessage>O palestrante só pode ser associado a um evento médico futuro e ativo.</errorMessage>
+</ValidationRule>

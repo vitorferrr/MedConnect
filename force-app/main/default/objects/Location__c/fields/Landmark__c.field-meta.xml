@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Landmark__c</fullName>
+    <description>Ponto de referência próximo para facilitar a localização.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Insira uma referência próxima (ex: &quot;Ao lado do shopping&quot;).</inlineHelpText>
+    <label>Landmark</label>
+    <length>80</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

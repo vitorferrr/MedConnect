@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Location_Verified__c</fullName>
+    <description>Fórmula que puxa o status de verificação do objeto Location.</description>
+    <formula>Location__r.Verified__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Indica se o local escolhido é um endereço verificado.</inlineHelpText>
+    <label>Location Verified</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

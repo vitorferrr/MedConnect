@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Log_Date_Time__c</fullName>
+    <description>Timestamp de quando a falha de sistema ocorreu.</description>
+    <inlineHelpText>Registra o momento exato em que o erro foi gerado.</inlineHelpText>
+    <label>Log Date/Time</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>
