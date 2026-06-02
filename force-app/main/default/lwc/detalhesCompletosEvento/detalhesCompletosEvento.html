@@ -1,0 +1,118 @@
+<template>
+    <lightning-card title="Painel Consolidado do Evento Médico" icon-name="custom:custom86">
+        <div class="slds-p-around_small">
+
+            <lightning-tabset variant="scoped">
+                
+                <!-- ABA 1: Detalhes do Evento (Consumindo LDS) -->
+                <lightning-tab label="Detalhes do Evento">
+                    <lightning-record-view-form 
+                        record-id={recordId} 
+                        object-api-name="Medical_Event__c">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                                <lightning-output-field field-name="Name__c"></lightning-output-field>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                                <lightning-output-field field-name="Status__c"></lightning-output-field>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                                <lightning-output-field field-name="Start__c"></lightning-output-field>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                                <lightning-output-field field-name="End__c"></lightning-output-field>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-around_xx-small">
+                                <lightning-output-field field-name="Max_Seats__c"></lightning-output-field>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-around_xx-small">
+                                <lightning-output-field field-name="Remaining_Seats__c"></lightning-output-field>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-around_xx-small">
+                                <lightning-output-field field-name="Live__c"></lightning-output-field>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-p-around_xx-small slds-border_top">
+                                <lightning-output-field field-name="Event_Detail__c"></lightning-output-field>
+                            </div>
+                        </div>
+                    </lightning-record-view-form>
+                </lightning-tab>
+
+                <!-- ABA 2: Palestrantes (Consumindo DataTable) -->
+                <lightning-tab label="Palestrantes Disponíveis">
+                    <template if:true={haPalestrantes}>
+                        <div style="height: 250px;">
+                            <lightning-datatable
+                                key-field="idReg"
+                                data={dadosPalestrantes}
+                                columns={colunasPalestrantes}
+                                hide-checkbox-column>
+                            </lightning-datatable>
+                        </div>
+                    </template>
+                    <template if:false={haPalestrantes}>
+                        <div class="slds-align_absolute-center slds-p-around_medium slds-text-color_weak">
+                            Nenhum palestrante alocado para este evento médico até o momento.
+                        </div>
+                    </template>
+                </lightning-tab>
+
+                <!-- ABA 3: Detalhes de Localização (Consumindo LDS Condicional) -->
+                <lightning-tab label="Localização do Evento">
+                    <template if:true={idLocalizacao}>
+                        <lightning-record-view-form 
+                            record-id={idLocalizacao} 
+                            object-api-name="Location__c">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                                    <lightning-output-field field-name="Street__c"></lightning-output-field>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                                    <lightning-output-field field-name="City__c"></lightning-output-field>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                                    <lightning-output-field field-name="State__c"></lightning-output-field>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                                    <lightning-output-field field-name="Postal_Code__c"></lightning-output-field>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                                    <lightning-output-field field-name="Country__c"></lightning-output-field>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                                    <lightning-output-field field-name="Verified__c"></lightning-output-field>
+                                </div>
+                            </div>
+                        </lightning-record-view-form>
+                    </template>
+                    <template if:false={idLocalizacao}>
+                        <div class="slds-align_absolute-center slds-p-around_medium slds-text-color_error">
+                            Este evento não possui um local físico atribuído ou é um evento Virtual.
+                        </div>
+                    </template>
+                </lightning-tab>
+
+                <!-- ABA 4: Participantes Inscritos (Consumindo DataTable) -->
+                <lightning-tab label="Lista de Participantes">
+                    <template if:true={haParticipantes}>
+                        <div style="height: 250px;">
+                            <lightning-datatable
+                                key-field="idReg"
+                                data={dadosParticipantes}
+                                columns={colunasParticipantes}
+                                hide-checkbox-column>
+                            </lightning-datatable>
+                        </div>
+                    </template>
+                    <template if:false={haParticipantes}>
+                        <div class="slds-align_absolute-center slds-p-around_medium slds-text-color_weak">
+                            Nenhum participante inscrito para este evento até o momento.
+                        </div>
+                    </template>
+                </lightning-tab>
+
+            </lightning-tabset>
+
+        </div>
+    </lightning-card>
+</template>

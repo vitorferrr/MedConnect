@@ -1,4 +1,7 @@
-//Classe helper para criar dados de teste para os testes unitários
+/**
+ * @description Classe utilitária para gerar dados de teste baseados estritamente no documento do projeto.
+ * @author      Vitor Ferreira
+ */
 @isTest
 public class TestDataFactory {
     

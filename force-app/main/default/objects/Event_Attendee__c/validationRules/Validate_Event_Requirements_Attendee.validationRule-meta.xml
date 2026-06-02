@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Event_Requirements_Attendee</fullName>
+    <active>true</active>
+    <description>Bloqueia a associação se a data final do evento passou, se o evento não estiver Live, ou se as vagas acabaram.</description>
+    <errorConditionFormula>OR(
+    Medical_Event__r.End__c &lt; NOW(),
+    Medical_Event__r.Live__c = false,
+    Medical_Event__r.Remaining_Seats__c &lt;= 0
+)</errorConditionFormula>
+    <errorMessage>Não é possível associar o participante: o evento expirou, não está ativo (Live) ou não possui vagas disponíveis.</errorMessage>
+</ValidationRule>

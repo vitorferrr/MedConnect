@@ -3,8 +3,8 @@
     <fullName>Virtual_No_Location</fullName>
     <active>true</active>
     <errorConditionFormula>AND(
-  ISPICKVAL(Event_Type__c, &quot;Virtual&quot;),
-  NOT(ISBLANK(Location__c))
+    TEXT(Event_Type__c) = &apos;Virtual&apos;,
+    NOT(ISBLANK(Location__c))
 )</errorConditionFormula>
     <errorMessage>Eventos virtuais não podem ter Location preenchido.</errorMessage>
 </ValidationRule>

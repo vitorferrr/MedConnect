@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Event_Requirements_Speaker</fullName>
+    <active>true</active>
+    <description>Um palestrante só pode ser associado se a data final do evento estiver no futuro e a caixinha Live estiver marcada.</description>
+    <errorConditionFormula>OR(
+    Medical_Event__r.End__c &lt; NOW(),
+    Medical_Event__r.Live__c = false
+)</errorConditionFormula>
+    <errorMessage>Um palestrante só pode ser associado a um evento ativo (Live) e com data final no futuro.</errorMessage>
+</ValidationRule>

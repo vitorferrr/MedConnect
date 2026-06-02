@@ -4,8 +4,8 @@
     <active>true</active>
     <description>Se Recurring estiver marcado, Frequency deve ser preenchido. Se Recurring estiver desmarcado, Frequency não pode ser selecionado.</description>
     <errorConditionFormula>OR(
-  AND(Recurring__c, ISPICKVAL(Frequency__c, &quot;&quot;)),
-  AND(NOT(Recurring__c), NOT(ISPICKVAL(Frequency__c, &quot;&quot;)))
+    AND(Recurring__c = true, ISBLANK(TEXT(Frequency__c))),
+    AND(Recurring__c = false, NOT(ISBLANK(TEXT(Frequency__c))))
 )</errorConditionFormula>
     <errorMessage>Preencha Frequency somente quando Recurring estiver marcado.</errorMessage>
 </ValidationRule>

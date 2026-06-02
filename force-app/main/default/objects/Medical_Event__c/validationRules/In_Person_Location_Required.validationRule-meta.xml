@@ -4,8 +4,8 @@
     <active>true</active>
     <description>Se o Event Type for In-Person, o campo Location deve ser preenchido.</description>
     <errorConditionFormula>AND(
-  ISPICKVAL(Event_Type__c, &quot;In-Person&quot;),
-  ISBLANK(Location__c)
+    TEXT(Event_Type__c) = &apos;In-Person&apos;,
+    ISBLANK(Location__c)
 )</errorConditionFormula>
     <errorMessage>Eventos presenciais precisam ter Location preenchido.</errorMessage>
 </ValidationRule>

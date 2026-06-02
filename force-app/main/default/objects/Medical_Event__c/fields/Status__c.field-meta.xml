@@ -4,7 +4,7 @@
     <description>Ciclo de vida atual do evento (Criado, Publicado, etc.).</description>
     <inlineHelpText>Selecione a etapa atual deste evento.</inlineHelpText>
     <label>Status</label>
-    <required>true</required>
+    <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
