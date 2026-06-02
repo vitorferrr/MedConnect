@@ -1,0 +1,53 @@
+<template>
+    <lightning-card title="MedConnect - Próximos Eventos Clínicos" icon-name="standard:event">
+        <div class="slds-p-around_medium">
+            
+            <div class="slds-grid slds-gutters slds-m-b-around_medium slds-p-bottom_medium slds-border_bottom">
+                <div class="slds-col slds-size_1-of-3">
+                    <lightning-input 
+                        type="search" 
+                        label="Filtrar por Nome do Evento" 
+                        value={termoNome}
+                        placeholder="Digite o nome..." 
+                        onchange={lidarComBuscaNome}>
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-3">
+                    <lightning-input 
+                        type="date" 
+                        label="Filtrar por Data do Evento" 
+                        value={dataBusca}
+                        onchange={lidarComBuscaData}>
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-3">
+                    <lightning-input 
+                        type="search" 
+                        label="Filtrar por Localização" 
+                        value={termoLocalizacao}
+                        placeholder="Digite o local da clínica..." 
+                        onchange={lidarComBuscaLocalizacao}>
+                    </lightning-input>
+                </div>
+            </div>
+
+            <template if:true={haEventos}>
+                <div style="height: 350px;">
+                    <lightning-datatable
+                        key-field="Id"
+                        data={dadosProcessados}
+                        columns={colunas}
+                        hide-checkbox-column>
+                    </lightning-datatable>
+                </div>
+            </template>
+
+            <template if:false={haEventos}>
+                <div class="slds-align_absolute-center slds-p-around_xlarge slds-text-color_weak slds-text-heading_small">
+                    Nenhum evento médico ativo ou futuro localizado com os filtros inseridos.
+                </div>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>
