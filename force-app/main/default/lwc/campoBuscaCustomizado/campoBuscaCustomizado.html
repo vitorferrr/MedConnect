@@ -1,0 +1,46 @@
+<template>
+    <div class="slds-form-element">
+        <label class="slds-form-element__label">{etiqueta}</label>
+        <div class="slds-form-element__control">
+            <div class="slds-combobox_container">
+                <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open">
+                    
+                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                        <template if:true={registroSelecionado}>
+                            <div class="slds-pill_container">
+                                <lightning-pill label={nomeSelecionado} onremove={removerSelecao}></lightning-pill>
+                            </div>
+                        </template>
+                        
+                        <template if:false={registroSelecionado}>
+                            <lightning-input 
+                                type="search"
+                                variant="label-hidden"
+                                value={termoBusca}
+                                placeholder={textoSubstituto}
+                                onchange={lidarComMudancaInput}>
+                            </lightning-input>
+                        </template>
+                    </div>
+
+                    <template if:true={exibirResultados}>
+                        <div class="slds-dropdown slds-dropdown_length-with-icon slds-dropdown_fluid" role="listbox">
+                            <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                <template for:each={opcoesEncontradas} for:item="opcao">
+                                    <li key={opcao.Id} role="presentation" class="slds-listbox__item" data-id={opcao.Id} data-name={opcao.Name} onclick={selecionarOpcao}>
+                                        <div class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small" role="option">
+                                            <span class="slds-media__body">
+                                                <span class="slds-listbox__option-text">{opcao.Name}</span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </template>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

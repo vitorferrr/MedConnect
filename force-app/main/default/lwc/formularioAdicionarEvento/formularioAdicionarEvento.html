@@ -1,0 +1,155 @@
+<template>
+    <lightning-card title="Painel MedConnect - Cadastro de Evento Médico" icon-name="custom:custom11">
+        <div class="slds-p-around_medium">
+            
+            <div class="slds-section slds-is-open">
+                <h3 class="slds-section__title slds-theme_shade">
+                    <span class="slds-p-horizontal_small" title="Informações Gerais">Informações Gerais</span>
+                </h3>
+                <div class="slds-fluid slds-p-vertical_small">
+                    <lightning-input 
+                        label="Nome do Evento" 
+                        value={nomeEvento} 
+                        onchange={lidarComNome} 
+                        required>
+                    </lightning-input>
+                </div>
+
+                <div class="slds-grid slds-gutters slds-p-bottom_small">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-combobox
+                            label="Status do Evento"
+                            value={statusEvento}
+                            options={opcoesStatus}
+                            onchange={lidarComStatus}
+                            required>
+                        </lightning-combobox>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-combobox
+                            label="Tipo de Evento"
+                            value={tipoEvento}
+                            options={opcoesTipo}
+                            onchange={lidarComTipo}
+                            required>
+                        </lightning-combobox>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-section slds-is-open">
+                <h3 class="slds-section__title slds-theme_shade">
+                    <span class="slds-p-horizontal_small" title="Regras de Agendamento">Regras de Agendamento e Status</span>
+                </h3>
+                <div class="slds-grid slds-gutters slds-p-vertical_small">
+                    <div class="slds-col slds-size_1-of-3 slds-p-top_large">
+                        <lightning-input 
+                            type="checkbox" 
+                            label="Evento Recorrente?" 
+                            checked={recorrenteEvento} 
+                            onchange={lidarComRecorrencia}>
+                        </lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <template if:true={recorrenteEvento}>
+                            <lightning-combobox
+                                label="Frequência"
+                                value={frequenciaEvento}
+                                options={opcoesFrequencia}
+                                onchange={lidarComFrequencia}
+                                required>
+                            </lightning-combobox>
+                        </template>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3 slds-p-top_large">
+                        <lightning-input 
+                            type="checkbox" 
+                            label="Evento Ativo (Live?)" 
+                            checked={ativoEvento} 
+                            onchange={lidarComAtivo}>
+                        </lightning-input>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-section slds-is-open">
+                <h3 class="slds-section__title slds-theme_shade">
+                    <span class="slds-p-horizontal_small" title="Responsáveis e Local">Responsáveis e Logística</span>
+                </h3>
+                <div class="slds-grid slds-gutters slds-p-vertical_small">
+                    <div class="slds-col slds-size_1-of-2">
+                        <c-campo-busca-customizado 
+                            etiqueta="Organizador Responsável (Clinic Organizer)" 
+                            nome-objeto="Clinic_Organizer__c" 
+                            texto-substituto="Buscar organizador da clínica..."
+                            onregistroselecionado={lidarComOrganizadorSelecionado}
+                            onregistroremovido={lidarComOrganizadorRemovido}>
+                        </c-campo-busca-customizado>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <c-campo-busca-customizado 
+                            etiqueta="Local físico (Location)" 
+                            nome-objeto="Location__c" 
+                            texto-substituto="Buscar endereço cadastrado..."
+                            onregistroselecionado={lidarComLocalizacaoSelecionada}
+                            onregistroremovido={lidarComLocalizacaoRemovida}>
+                        </c-campo-busca-customizado>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-section slds-is-open">
+                <h3 class="slds-section__title slds-theme_shade">
+                    <span class="slds-p-horizontal_small" title="Prazos e Vagas">Prazos e Capacidade</span>
+                </h3>
+                <div class="slds-grid slds-gutters slds-p-vertical_small">
+                    <div class="slds-col slds-size_1-of-3">
+                        <lightning-input 
+                            type="datetime" 
+                            label="Data/Hora de Início" 
+                            value={dataInicio} 
+                            onchange={lidarComDataInicio} 
+                            required>
+                        </lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <lightning-input 
+                            type="datetime" 
+                            label="Data/Hora de Término" 
+                            value={dataTermino} 
+                            onchange={lidarComDataTermino} 
+                            required>
+                        </lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <lightning-input 
+                            type="number" 
+                            label="Limite de Assentos (Max Seats)" 
+                            value={maximoAssentos} 
+                            onchange={lidarComMaximoAssentos} 
+                            required>
+                        </lightning-input>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-section slds-is-open slds-m-top_medium">
+                <label class="slds-form-element__label">Detalhes e Pauta do Evento (Rich Text)</label>
+                <lightning-input-rich-text 
+                    value={detalhesEvento} 
+                    onchange={lidarComDetalhes}>
+                </lightning-input-rich-text>
+            </div>
+
+            <div class="slds-m-top_large slds-text-align_right">
+                <lightning-button 
+                    variant="brand" 
+                    label="Salvar Novo Evento Médico" 
+                    icon-name="utility:save"
+                    onclick={executarSalvamento}>
+                </lightning-button>
+            </div>
+
+        </div>
+    </lightning-card>
+</template>
