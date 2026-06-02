@@ -1,10 +1,9 @@
 <template>
     <lightning-card title="Painel Consolidado do Evento Médico" icon-name="custom:custom86">
         <div class="slds-p-around_small">
-
+            
             <lightning-tabset variant="scoped">
                 
-                <!-- ABA 1: Detalhes do Evento (Consumindo LDS) -->
                 <lightning-tab label="Detalhes do Evento">
                     <lightning-record-view-form 
                         record-id={recordId} 
@@ -38,10 +37,19 @@
                     </lightning-record-view-form>
                 </lightning-tab>
 
-                <!-- ABA 2: Palestrantes (Consumindo DataTable) -->
                 <lightning-tab label="Palestrantes Disponíveis">
+                    <div class="slds-m-bottom_small slds-clearfix">
+                        <lightning-button
+                            label="Novo Palestrante"
+                            icon-name="utility:add"
+                            variant="brand"
+                            class="slds-float_right"
+                            onclick={abrirCriacaoPalestrante}>
+                        </lightning-button>
+                    </div>
+                    
                     <template if:true={haPalestrantes}>
-                        <div style="height: 250px;">
+                        <div style="height: 220px;">
                             <lightning-datatable
                                 key-field="idReg"
                                 data={dadosPalestrantes}
@@ -57,7 +65,6 @@
                     </template>
                 </lightning-tab>
 
-                <!-- ABA 3: Detalhes de Localização (Consumindo LDS Condicional) -->
                 <lightning-tab label="Localização do Evento">
                     <template if:true={idLocalizacao}>
                         <lightning-record-view-form 
@@ -92,10 +99,19 @@
                     </template>
                 </lightning-tab>
 
-                <!-- ABA 4: Participantes Inscritos (Consumindo DataTable) -->
                 <lightning-tab label="Lista de Participantes">
+                    <div class="slds-m-bottom_small slds-clearfix">
+                        <lightning-button
+                            label="Novo Participante"
+                            icon-name="utility:add"
+                            variant="brand"
+                            class="slds-float_right"
+                            onclick={abrirCriacaoParticipante}>
+                        </lightning-button>
+                    </div>
+
                     <template if:true={haParticipantes}>
-                        <div style="height: 250px;">
+                        <div style="height: 220px;">
                             <lightning-datatable
                                 key-field="idReg"
                                 data={dadosParticipantes}

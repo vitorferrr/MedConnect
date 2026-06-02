@@ -1,13 +1,14 @@
 import { LightningElement, api, wire, track } from 'lwc';
+import { NavigationMixin } from 'lightning/navigation';
+import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 import obterPalestrantesVinculados from '@salesforce/apex/ControladorDetalhesEvento.obterPalestrantesVinculados';
 import obterParticipantesVinculados from '@salesforce/apex/ControladorDetalhesEvento.obterParticipantesVinculados';
 
-// Importação do campo de relacionamento para capturar o ID da localização vinculada
 import LOCALIZACAO_FIELD from '@salesforce/schema/Medical_Event__c.Location__c';
 
-export default class DetalhesCompletosEvento extends LightningElement {
-    @api recordId; // Captura automaticamente o ID do evento atual na página
+export default class DetalhesCompletosEvento extends NavigationMixin(LightningElement) {
+    @api recordId; 
     @api objectApiName;
 
     @track dadosPalestrantes = [];
@@ -18,7 +19,7 @@ export default class DetalhesCompletosEvento extends LightningElement {
         { label: 'Nome do Palestrante', fieldName: 'nome', type: 'text' },
         { label: 'E-mail de Contato', fieldName: 'email', type: 'email' },
         { label: 'Telefone', fieldName: 'telefone', type: 'phone' },
-        { label: 'Especialidade Clínica', fieldName: 'especializacao', type: 'text' }
+        { label: 'Especialidade Clínica', fieldName: 'especizacao', type: 'text' }
     ];
 
     colunasParticipantes = [
@@ -37,7 +38,7 @@ export default class DetalhesCompletosEvento extends LightningElement {
         }
     }
 
-    @wire(obterPalestrantesVinculados, { idEvent: '$recordId' })
+    @wire(obterPalestrantesVinculados, { idEvento: '$recordId' })
     carregarPalestrantes({ error, data }) {
         if (data) {
             this.dadosPalestrantes = data;
@@ -46,13 +47,47 @@ export default class DetalhesCompletosEvento extends LightningElement {
         }
     }
 
-    @wire(obterParticipantesVinculados, { idEvent: '$recordId' })
+    @wire(obterParticipantesVinculados, { idEvento: '$recordId' })
     carregarParticipantes({ error, data }) {
         if (data) {
             this.dadosParticipantes = data;
         } else if (error) {
             this.dadosParticipantes = [];
         }
+    }
+
+    abrirCriacaoPalestrante() {
+        const valoresPadrao = encodeDefaultFieldValues({
+            Medical_Event__c: this.recordId
+        });
+
+        this[NavigationMixin.Navigate]({
+            type: 'standard__objectPage',
+            attributes: {
+                objectApiName: 'Event_Speaker__c',
+                actionName: 'new'
+            },
+            state: {
+                defaultFieldValues: valoresPadrao
+            }
+        });
+    }
+
+    abrirCriacaoParticipante() {
+        const valoresPadrao = encodeDefaultFieldValues({
+            Medical_Event__c: this.recordId
+        });
+
+        this[NavigationMixin.Navigate]({
+            type: 'standard__objectPage',
+            attributes: {
+                objectApiName: 'Event_Attendee__c',
+                actionName: 'new'
+            },
+            state: {
+                defaultFieldValues: valoresPadrao
+            }
+        });
     }
 
     get haPalestrantes() {

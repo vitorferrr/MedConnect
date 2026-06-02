@@ -1,0 +1,46 @@
+<template>
+    <lightning-card title="Agenda do Participante - MedConnect" icon-name="standard:coaching_program_attendance">
+        <div class="slds-p-around_medium">
+
+            <!-- Implementação do Lightning Accordion com duas seções separadas -->
+            <lightning-accordion allow-multiple-sections-open active-section-name="proximos">
+                
+                <!-- Próximos Eventos (Upcoming Events) -->
+                <lightning-accordion-section name="proximos" label={rotuloFuturos}>
+                    <template if:true={haFuturos}>
+                        <lightning-datatable
+                            key-field="Id"
+                            data={listaFuturos}
+                            columns={colunasFuturas}
+                            hide-checkbox-column>
+                        </lightning-datatable>
+                    </template>
+                    <template if:false={haFuturos}>
+                        <div class="slds-p-around_small slds-text-color_weak">
+                            Nenhuma inscrição ativa para próximos eventos médicos.
+                        </div>
+                    </template>
+                </lightning-accordion-section>
+
+                <!-- Eventos Passados (Past Events) -->
+                <lightning-accordion-section name="passados" label={rotuloPassados}>
+                    <template if:true={haPassados}>
+                        <lightning-datatable
+                            key-field="Id"
+                            data={listaPassados}
+                            columns={colunasPassadas}
+                            hide-checkbox-column>
+                        </lightning-datatable>
+                    </template>
+                    <template if:false={haPassados}>
+                        <div class="slds-p-around_small slds-text-color_weak">
+                            Nenhum histórico de eventos médicos finalizados encontrado.
+                        </div>
+                    </template>
+                </lightning-accordion-section>
+
+            </lightning-accordion>
+
+        </div>
+    </lightning-card>
+</template>
