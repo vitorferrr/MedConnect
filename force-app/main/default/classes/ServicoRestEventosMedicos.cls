@@ -26,11 +26,6 @@ global with sharing class ServicoRestEventosMedicos {
 
         return listaResultado;
     }
-
-    // =========================================================================
-    // WRAPPER DE CONTRATO DA API (CONTRATO JSON)
-    // =========================================================================
-
     /**
      * @description Classe estrutural (Wrapper) utilizada para desacoplar os nomes físicos das tabelas 
      * do Salesforce de chaves limpas e profissionais para consumo de terceiros.

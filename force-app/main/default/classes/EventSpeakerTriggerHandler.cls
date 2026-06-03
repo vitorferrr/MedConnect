@@ -1,6 +1,6 @@
 public inherited sharing class EventSpeakerTriggerHandler {
     
-    //Milestone 3: Verifica se o palestrante já está inserido em outro evento
+    //Verifica se o palestrante já está inserido em outro evento
     public static void checkDuplicateBookings(List<Event_Speaker__c> newList, Map<Id, Event_Speaker__c> oldMap) {
         try {
             Set<Id> speakerIds = new Set<Id>();
