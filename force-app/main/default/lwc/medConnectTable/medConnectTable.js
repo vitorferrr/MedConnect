@@ -10,7 +10,6 @@ export default class MedConnectTable extends LightningElement {
     @track currentTab = 'todos';
     @track searchName = '';
 
-    // Wire reativo alimentado pela propriedade do Builder
     @wire(getRecords, { objectName: '$nomeObjetoAPI' })
     wiredData({ error, data }) {
         if (data) {
@@ -21,14 +20,12 @@ export default class MedConnectTable extends LightningElement {
         }
     }
 
-    // Gatilhos booleanos para chaveamento de colunas no HTML
     get isEvento() { return this.nomeObjetoAPI === 'Medical_Event__c'; }
     get isOrganizador() { return this.nomeObjetoAPI === 'Clinic_Organizer__c'; }
     get isPalestrante() { return this.nomeObjetoAPI === 'Speaker__c'; }
     get isParticipante() { return this.nomeObjetoAPI === 'Attendees__c'; }
     get isLocalizacao() { return this.nomeObjetoAPI === 'Location__c'; }
 
-    // Classes de controle das abas visuais
     get todosClass() { return this.currentTab === 'todos' ? 'active' : ''; }
     get meusClass() { return this.currentTab === 'meus' ? 'active' : ''; }
 
@@ -40,10 +37,8 @@ export default class MedConnectTable extends LightningElement {
     handleTabTodos() { this.currentTab = 'todos'; this.filterData(); }
     handleTabMeus() { this.currentTab = 'meus'; this.filterData(); }
 
-    // Mecanismo de busca em tempo real
     filterData() {
         this.filteredRecords = this.allRecords.filter(rec => {
-            // CORRIGIDO DEFINITIVAMENTE: Usando 'const' em vez de 'String' do Apex
             const targetName = this.isEvento ? rec.Name__c : rec.Name;
             const matchesName = targetName ? targetName.toLowerCase().includes(this.searchName.toLowerCase()) : true;
             return matchesName;

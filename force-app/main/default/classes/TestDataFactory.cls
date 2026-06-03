@@ -1,7 +1,3 @@
-/**
- * @description Classe utilitária para gerar dados de teste baseados no documento do projeto.
- * @author      Vitor Ferreira
- */
 @isTest
 public class TestDataFactory {
     

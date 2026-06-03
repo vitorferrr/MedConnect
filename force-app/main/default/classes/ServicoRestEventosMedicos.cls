@@ -1,15 +1,10 @@
 @RestResource(urlMapping='/EventosMedicos/*')
 global with sharing class ServicoRestEventosMedicos {
 
-    /**
-     * @description Método HTTP GET que intercepta requisições externas e retorna a listagem de eventos.
-     * @return      Lista estruturada no formato do Wrapper, serializada automaticamente em JSON pelo Salesforce.
-     */
     @HttpGet
     global static List<FormatoEventoSaida> obterEventosFuturosRest() {
         List<FormatoEventoSaida> listaResultado = new List<FormatoEventoSaida>();
 
-        // Query estruturada aplicando os filtros obrigatórios: Apenas ativos (Live) e início maior que hoje
         List<Medical_Event__c> eventos = [
             SELECT Id, Name__c, Status__c, Start__c, End__c, Max_Seats__c, Remaining_Seats__c, Event_Detail__c, Location__r.Name
             FROM Medical_Event__c
@@ -19,17 +14,12 @@ global with sharing class ServicoRestEventosMedicos {
             ORDER BY Start__c ASC
         ];
 
-        // Mapeia os registros do banco de dados para a estrutura limpa de integração
         for (Medical_Event__c ev : eventos) {
             listaResultado.add(new FormatoEventoSaida(ev));
         }
 
         return listaResultado;
     }
-    /**
-     * @description Classe estrutural (Wrapper) utilizada para desacoplar os nomes físicos das tabelas 
-     * do Salesforce de chaves limpas e profissionais para consumo de terceiros.
-     */
     global class FormatoEventoSaida {
         global String idEvento {get;set;}
         global String nome {get;set;}

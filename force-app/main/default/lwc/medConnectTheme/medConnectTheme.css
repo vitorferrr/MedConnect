@@ -1,18 +1,15 @@
-
 :host {
     --mc-azul-primario:      #1A73E8;  
     --mc-azul-escuro:        #0D47A1;  
     --mc-azul-suave:         #E8F0FE;  
     --mc-azul-medio:         #4285F4;  
 
-    /* Neutros e fundos */
     --mc-bg-page:            #FAFBFC; 
     --mc-bg-card:            #FFFFFF; 
     --mc-texto-principal:    #1E293B;  
     --mc-texto-secundario:   #64748B;  
     --mc-borda-sutil:        #E2E8F0;  
 
-    /* Paleta de status para badges */
     --mc-status-ativo-bg:    #E6F4EA;
     --mc-status-ativo-txt:   #137333;
     --mc-status-pendente-bg: #FFF8E1;
@@ -22,24 +19,19 @@
     --mc-status-live-bg:     #FCE8E6;
     --mc-status-live-txt:    #C5221F;
 
-    /* Sombras */
     --mc-sombra-card:        0 4px 20px rgba(160, 170, 190, 0.15);
     --mc-sombra-card-hover:  0 12px 40px rgba(26, 115, 232, 0.18);
     --mc-sombra-hero:        0 8px 32px rgba(13, 71, 161, 0.35);
 
-    /* Tipografia */
     --mc-fonte-display:      'DM Sans', 'Nunito', 'Trebuchet MS', sans-serif;
     --mc-fonte-corpo:        'Source Sans 3', 'Gill Sans', 'Calibri', sans-serif;
 
-    /* Arredondamentos */
     --mc-radius-card:        12px;
     --mc-radius-capsula:     50px;
     --mc-radius-badge:       999px;
 
-    /* Transições */
     --mc-transicao-suave:    all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 
-    /* Espaçamentos base (escala de 8px) */
     --mc-espaco-xs:   4px;
     --mc-espaco-sm:   8px;
     --mc-espaco-md:   16px;
@@ -50,7 +42,6 @@
 }
 
 
-/* Paddings internos */
 .mc-p-xs  { padding: var(--mc-espaco-xs); }
 .mc-p-sm  { padding: var(--mc-espaco-sm); }
 .mc-p-md  { padding: var(--mc-espaco-md); }
@@ -58,7 +49,6 @@
 .mc-p-xl  { padding: var(--mc-espaco-xl); }
 .mc-p-2xl { padding: var(--mc-espaco-2xl); }
 
-/* Margens externas */
 .mc-m-xs  { margin: var(--mc-espaco-xs); }
 .mc-m-sm  { margin: var(--mc-espaco-sm); }
 .mc-m-md  { margin: var(--mc-espaco-md); }
@@ -66,18 +56,15 @@
 .mc-m-xl  { margin: var(--mc-espaco-xl); }
 .mc-m-2xl { margin: var(--mc-espaco-2xl); }
 
-/* Margens verticais (top/bottom) */
 .mc-my-sm  { margin-top: var(--mc-espaco-sm);  margin-bottom: var(--mc-espaco-sm); }
 .mc-my-md  { margin-top: var(--mc-espaco-md);  margin-bottom: var(--mc-espaco-md); }
 .mc-my-lg  { margin-top: var(--mc-espaco-lg);  margin-bottom: var(--mc-espaco-lg); }
 .mc-my-xl  { margin-top: var(--mc-espaco-xl);  margin-bottom: var(--mc-espaco-xl); }
 
-/* Margens horizontais (left/right) */
 .mc-mx-sm  { margin-left: var(--mc-espaco-sm);  margin-right: var(--mc-espaco-sm); }
 .mc-mx-md  { margin-left: var(--mc-espaco-md);  margin-right: var(--mc-espaco-md); }
 .mc-mx-auto { margin-left: auto; margin-right: auto; }
 
-/* Paddings verticais e horizontais isolados */
 .mc-pt-lg  { padding-top:    var(--mc-espaco-lg); }
 .mc-pb-lg  { padding-bottom: var(--mc-espaco-lg); }
 .mc-px-md  { padding-left:   var(--mc-espaco-md); padding-right: var(--mc-espaco-md); }
@@ -85,7 +72,6 @@
 .mc-px-xl  { padding-left:   var(--mc-espaco-xl); padding-right: var(--mc-espaco-xl); }
 
 
-/* Container principal do Hero */
 .mc-hero {
     position: relative;
     width: 100%;
@@ -99,7 +85,6 @@
     font-family: var(--mc-fonte-display);
 }
 
-/* Camada de textura sobre o gradiente */
 .mc-hero__noise {
     position: absolute;
     inset: 0;
@@ -109,7 +94,6 @@
     z-index: 0;
 }
 
-/* Orbs decorativos (esferas etéreas de luz) */
 .mc-hero__orb {
     position: absolute;
     border-radius: 50%;
@@ -148,7 +132,6 @@
     50%       { transform: scale(1.1); opacity: 0.12; }
 }
 
-/* Conteúdo interno do Hero */
 .mc-hero__inner {
     position: relative;
     z-index: 1;
@@ -157,7 +140,6 @@
     text-align: center;
 }
 
-/* Badge institucional no topo */
 .mc-hero__badge {
     display: inline-flex;
     align-items: center;
@@ -181,7 +163,6 @@
     height: 16px;
 }
 
-/* Título principal do Hero */
 .mc-hero__title {
     font-family: var(--mc-fonte-display);
     font-size: clamp(1.8rem, 4vw, 2.8rem);
@@ -192,14 +173,12 @@
     letter-spacing: -0.02em;
 }
 
-/* Parte em destaque/itálico do título */
 .mc-hero__title--accent {
     font-style: normal;
     color: rgba(255, 255, 255, 0.75);
     font-weight: 300;
 }
 
-/* Subtítulo do Hero */
 .mc-hero__subtitle {
     font-family: var(--mc-fonte-corpo);
     font-size: clamp(0.95rem, 2vw, 1.1rem);
@@ -209,7 +188,6 @@
     max-width: 560px;
 }
 
-/* ── Barra de Pesquisa Integrada ── */
 .mc-hero__search-wrap {
     margin-bottom: var(--mc-espaco-xl);
 }
@@ -246,14 +224,13 @@
     font-size: 0.95rem;
     color: var(--mc-texto-principal);
     padding: var(--mc-espaco-sm) 0;
-    min-width: 0; /* evita overflow no flex */
+    min-width: 0;
 }
 
 .mc-hero__search-input::placeholder {
     color: var(--mc-texto-secundario);
 }
 
-/* Botão cápsula de busca */
 .mc-hero__search-btn {
     flex-shrink: 0;
     background: var(--mc-azul-primario);
@@ -279,7 +256,6 @@
     transform: scale(0.97);
 }
 
-/* Tags de busca rápida */
 .mc-hero__search-tags {
     display: flex;
     flex-wrap: wrap;
@@ -306,12 +282,10 @@
     transform: translateY(-2px);
 }
 
-/* ── Área de slot (contadores / botões injetados) ── */
 .mc-hero__slot-area {
     margin-top: var(--mc-espaco-lg);
 }
 
-/* Contadores de estatísticas (conteúdo padrão do slot) */
 .mc-hero__stats {
     display: inline-flex;
     align-items: center;
@@ -351,7 +325,6 @@
     font-weight: 500;
 }
 
-/* Divisor vertical entre estatísticas */
 .mc-hero__stat-divider {
     width: 1px;
     height: 40px;
@@ -359,7 +332,6 @@
     flex-shrink: 0;
 }
 
-/* Onda decorativa na base do hero */
 .mc-hero__wave {
     position: absolute;
     bottom: -1px;
@@ -377,7 +349,6 @@
 
 
 
-/* Área de wrapper principal */
 .mc-wrapper {
     padding: var(--mc-espaco-xl) var(--mc-espaco-lg);
     background: var(--mc-bg-page);
@@ -389,13 +360,11 @@
 }
 
 .mc-wrapper__grid-area {
-    /* Slot para grids de cards filhos injetados pelo componente pai */
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: var(--mc-espaco-lg);
 }
 
-/* ── Card base com elevação ── */
 .mc-card {
     background: var(--mc-bg-card);
     border-radius: var(--mc-radius-card);
@@ -404,7 +373,6 @@
     transition: var(--mc-transicao-suave);
 }
 
-/* Variante com elevação e efeito hover */
 .mc-card--elevated {
     box-shadow: var(--mc-sombra-card);
 }
@@ -415,7 +383,6 @@
     border-color: rgba(26, 115, 232, 0.2);
 }
 
-/* Cabeçalho do card */
 .mc-card__header {
     display: flex;
     align-items: center;
@@ -449,7 +416,6 @@
     text-align: center;
 }
 
-/* Rodapé do card */
 .mc-card__footer {
     padding: 0 var(--mc-espaco-lg) var(--mc-espaco-lg) var(--mc-espaco-lg);
     display: flex;
@@ -457,11 +423,10 @@
     justify-content: flex-end;
     gap: var(--mc-espaco-sm);
     flex-wrap: wrap;
-    min-height: 0; /* ocupa zero altura quando o slot está vazio */
+    min-height: 0; 
 }
 
 
-/* Base compartilhada dos badges */
 .mc-badge {
     display: inline-flex;
     align-items: center;
@@ -477,7 +442,6 @@
     line-height: 1.4;
 }
 
-/* Ponto indicador animado dentro de badges */
 .mc-badge::before {
     content: '';
     width: 6px;
@@ -488,7 +452,6 @@
     opacity: 0.6;
 }
 
-/* Variantes por status */
 .mc-badge--ativo {
     background: var(--mc-status-ativo-bg);
     color: var(--mc-status-ativo-txt);
@@ -509,7 +472,6 @@
     color: var(--mc-status-live-txt);
 }
 
-/* Badge Live com animação de pulso no indicador */
 .mc-badge--live::before {
     animation: mc-pulso-live 1.5s ease-in-out infinite;
 }
@@ -519,7 +481,6 @@
     50%       { opacity: 1;   transform: scale(1.4); }
 }
 
-/* Badge azul (informativo / institucional) */
 .mc-badge--info {
     background: var(--mc-azul-suave);
     color: var(--mc-azul-escuro);
@@ -527,7 +488,6 @@
 
 
 
-/* Botão primário sólido */
 .mc-btn {
     display: inline-flex;
     align-items: center;
@@ -559,7 +519,6 @@
     transform: translateY(-2px);
 }
 
-/* Botão secundário com borda */
 .mc-btn--secundario {
     background: transparent;
     color: var(--mc-azul-primario);
@@ -571,7 +530,6 @@
     transform: translateY(-2px);
 }
 
-/* Botão neutro / ghost */
 .mc-btn--ghost {
     background: transparent;
     color: var(--mc-texto-secundario);
@@ -583,7 +541,6 @@
     color: var(--mc-texto-principal);
 }
 
-/* Estado desabilitado global para botões */
 .mc-btn:disabled,
 .mc-btn[disabled] {
     opacity: 0.45;
@@ -622,7 +579,7 @@
     }
 }
 
-/* Mobile (até 480px) */
+/* Mobile */
 @media (max-width: 480px) {
     .mc-hero__search-inner {
         flex-wrap: wrap;

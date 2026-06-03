@@ -46,7 +46,6 @@ export default class EventosDoParticipante extends LightningElement {
         }
     }
 
-    // getters para reatividade e contadores dinâmicos nas abas da Sanfona
     get haFuturos() {
         return this.listaFuturos.length > 0;
     }
