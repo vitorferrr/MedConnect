@@ -76,7 +76,6 @@ export default class FormularioAdicionarEvento extends NavigationMixin(Lightning
 
         const configuracaoPayload = { apiName: 'Medical_Event__c', fields: camposBancoDados };
 
-        // Nota 1 do Milestone 9: Utiliza a UI Record API nativa sem depender de Apex Controller
         createRecord(configuracaoPayload)
             .then((registroCriado) => {
                 this.dispatchEvent(
@@ -87,7 +86,6 @@ export default class FormularioAdicionarEvento extends NavigationMixin(Lightning
                     })
                 );
 
-                // Nota 2 do Milestone 9: Redireciona de forma automatizada para a página padrão do registro
                 this[NavigationMixin.Navigate]({
                     type: 'standard__recordPage',
                     attributes: {
@@ -98,7 +96,7 @@ export default class FormularioAdicionarEvento extends NavigationMixin(Lightning
                 });
             })
             .catch((erroProcessamento) => {
-                // Captura e exibe erros de validação (Validation Rules)
+                // Captura erros de validação
                 this.dispatchEvent(
                     new ShowToastEvent({
                         title: 'Falha na validação dos dados',
