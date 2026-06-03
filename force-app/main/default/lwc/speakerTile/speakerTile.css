@@ -16,3 +16,16 @@
     border: 3px dashed #dddbda;
     display: inline-flex;
 }
+
+.card-container {
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(160, 170, 190, 0.15);
+    padding: 1.5rem;
+    border: 1px solid rgba(220, 225, 235, 0.6);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(130, 145, 175, 0.25);
+}

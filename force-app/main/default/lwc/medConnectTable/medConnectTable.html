@@ -1,0 +1,128 @@
+<template>
+    <div class="custom-container slds-card">
+        <div class="tabs-container slds-m-bottom_medium">
+            <button class="active">Início</button>
+            <button class={todosClass} onclick={handleTabTodos}>Todos os Registros</button>
+            <button class={meusClass} onclick={handleTabMeus}>Meus Destaques</button>
+        </div>
+
+        <h2 class="slds-text-heading_medium slds-m-bottom_small font-bold">{tituloTabela}</h2>
+
+        <div class="slds-grid slds-gutters slds-m-bottom_large">
+            <div class="slds-col slds-size_1-of-1">
+                <lightning-input type="search" label="Filtrar por nome" placeholder="Digite para pesquisar em tempo real..." value={searchName} onchange={handleSearchName}></lightning-input>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            
+            <template lwc:if={isEvento}>
+                <table class="slds-table custom-blue-table">
+                    <thead>
+                        <tr>
+                            <th>Nome do Evento</th>
+                            <th>Tipo</th>
+                            <th>Status</th>
+                            <th>Vagas Totais</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={filteredRecords} for:item="rec">
+                            <tr key={rec.Id}>
+                                <td><a class="record-name-link">{rec.Name__c}</a></td>
+                                <td>{rec.Event_Type__c}</td>
+                                <td>{rec.Status__c}</td>
+                                <td>{rec.Max_Seats__c}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+
+            <template lwc:elseif={isOrganizador}>
+                <table class="slds-table custom-blue-table">
+                    <thead>
+                        <tr>
+                            <th>Nome Completo</th>
+                            <th>E-mail de Contato</th>
+                            <th>Telefone corporativo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={filteredRecords} for:item="rec">
+                            <tr key={rec.Id}>
+                                <td><a class="record-name-link">{rec.Name}</a></td>
+                                <td>{rec.Email__c}</td>
+                                <td>{rec.Phone__c}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+
+            <template lwc:elseif={isPalestrante}>
+                <table class="slds-table custom-blue-table">
+                    <thead>
+                        <tr>
+                            <th>Palestrante</th>
+                            <th>Especialização Médica</th>
+                            <th>E-mail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={filteredRecords} for:item="rec">
+                            <tr key={rec.Id}>
+                                <td><a class="record-name-link">{rec.Name}</a></td>
+                                <td>{rec.Specialisation__c}</td>
+                                <td>{rec.Email__c}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+
+            <template lwc:elseif={isParticipante}>
+                <table class="slds-table custom-blue-table">
+                    <thead>
+                        <tr>
+                            <th>Participante</th>
+                            <th>E-mail</th>
+                            <th>Instituição / Empresa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={filteredRecords} for:item="rec">
+                            <tr key={rec.Id}>
+                                <td><a class="record-name-link">{rec.Name}</a></td>
+                                <td>{rec.Email__c}</td>
+                                <td>{rec.Company_Institution_Name__c}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+
+            <template lwc:elseif={isLocalizacao}>
+                <table class="slds-table custom-blue-table">
+                    <thead>
+                        <tr>
+                            <th>Endereço / Rua</th>
+                            <th>Cidade</th>
+                            <th>Ponto de Referência</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={filteredRecords} for:item="rec">
+                            <tr key={rec.Id}>
+                                <td><a class="record-name-link">{rec.Name}</a></td>
+                                <td>{rec.City__c} — {rec.State__c}</td>
+                                <td>{rec.Landmark__c}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+
+        </div>
+    </div>
+</template>

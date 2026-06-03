@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+ 
+    <apiVersion>60.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>MedConnect — Tema e Banner Hero</masterLabel>
+    <description>Componente master de personalização visual do portal MedConnect. Inclui Banner Hero imersivo com barra de pesquisa, Card Wrapper reutilizável via slots e sistema global de badges e botões.</description>
+ 
+    <targets>
+        <target>lightningCommunity__Default</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Page_Layout</target>
+    </targets>
+ 
+    <targetConfigs>
+ 
+        <targetConfig targets="lightningCommunity__Default">
+ 
+            <property
+                name="recordId"
+                type="String"
+                label="ID do Registro"
+                description="ID do registro da página de comunidade. Preenchido automaticamente pelo Experience Cloud."
+            />
+ 
+            <property
+                name="tituloCard"
+                type="String"
+                label="Título do Card Principal"
+                description="Texto exibido no cabeçalho do Card Wrapper. Ex: Próximos Eventos, Minha Agenda."
+                default="Painel de Eventos"
+            />
+ 
+            <property
+                name="mostrarCabecalho"
+                type="Boolean"
+                label="Exibir Cabeçalho do Card"
+                description="Quando ativo, exibe o cabeçalho com título e badge acima do conteúdo do card."
+                default="false"
+            />
+ 
+            <property
+                name="mostrarBadge"
+                type="Boolean"
+                label="Exibir Badge de Status"
+                description="Quando ativo, exibe um badge de status colorido no cabeçalho do card."
+                default="false"
+            />
+ 
+            <property
+                name="textoBadge"
+                type="String"
+                label="Texto do Badge"
+                description="Texto exibido dentro do badge de status. Ex: Ativo, Live, Em andamento."
+                default="Ativo"
+            />
+ 
+        </targetConfig>
+ 
+    </targetConfigs>
+ 
+</LightningComponentBundle>

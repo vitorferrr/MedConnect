@@ -8,30 +8,6 @@ export default class EventosDoParticipante extends LightningElement {
     @track listaFuturos = [];
     @track listaPassados = [];
 
-    // Definição das colunas para a tabela de Próximos Eventos
-    colunasFuturas = [
-        {
-            label: 'Evento Médico',
-            fieldName: 'linkEvento',
-            type: 'url',
-            typeAttributes: { label: { fieldName: 'nomeEvento' }, target: '_self' }
-        },
-        { label: 'Data de Início', fieldName: 'dataInicio', type: 'date', typeAttributes: { hour: '2-digit', minute: '2-digit' } },
-        { label: 'Local / Unidade', fieldName: 'localizacao', type: 'text' }
-    ];
-
-    // Definição das colunas para a tabela de Histórico de Eventos
-    colunasPassadas = [
-        {
-            label: 'Evento Concluído',
-            fieldName: 'linkEvento',
-            type: 'url',
-            typeAttributes: { label: { fieldName: 'nomeEvento' }, target: '_self' }
-        },
-        { label: 'Data de Término', fieldName: 'dataFim', type: 'date', typeAttributes: { hour: '2-digit', minute: '2-digit' } },
-        { label: 'Local / Unidade', fieldName: 'localizacao', type: 'text' }
-    ];
-
     // para alimentar a Seção de Eventos Futuros
     @wire(obterEventosFuturos, { idParticipante: '$recordId' })
     processarFuturos({ error, data }) {
@@ -42,7 +18,8 @@ export default class EventosDoParticipante extends LightningElement {
                     linkEvento: `/lightning/r/Medical_Event__c/${vinculo.Medical_Event__r.Id}/view`,
                     nomeEvento: vinculo.Medical_Event__r.Name__c,
                     dataInicio: vinculo.Medical_Event__r.Start__c,
-                    localizacao: vinculo.Medical_Event__r.Location__r ? vinculo.Medical_Event__r.Location__r.Name : 'Virtual'
+                    localizacao: vinculo.Medical_Event__r.Location__r ? vinculo.Medical_Event__r.Location__r.Name : 'Virtual',
+                    badgeClass: 'badge-base badge-future'
                 };
             });
         } else if (error) {
@@ -60,7 +37,8 @@ export default class EventosDoParticipante extends LightningElement {
                     linkEvento: `/lightning/r/Medical_Event__c/${vinculo.Medical_Event__r.Id}/view`,
                     nomeEvento: vinculo.Medical_Event__r.Name__c,
                     dataFim: vinculo.Medical_Event__r.End__c,
-                    localizacao: vinculo.Medical_Event__r.Location__r ? vinculo.Medical_Event__r.Location__r.Name : 'Virtual'
+                    localizacao: vinculo.Medical_Event__r.Location__r ? vinculo.Medical_Event__r.Location__r.Name : 'Virtual',
+                    badgeClass: 'badge-base badge-past'
                 };
             });
         } else if (error) {

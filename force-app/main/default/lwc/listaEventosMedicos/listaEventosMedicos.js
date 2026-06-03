@@ -1,4 +1,4 @@
-import { LightningElement, track, wire } from 'lwc';
+import { LightningElement, track, wire, api } from 'lwc';
 import obterEventosAtivos from '@salesforce/apex/ControladorListaEventos.obterEventosAtivos';
 
 export default class ListaEventosMedicos extends LightningElement {
@@ -42,7 +42,7 @@ export default class ListaEventosMedicos extends LightningElement {
             this.dadosProcessados = data.map(registro => {
                 return {
                     ...registro,
-                    urlLink: `/lightning/r/Medical_Event__c/${registro.Id}/view`, // Link padrão de redirecionamento
+                    urlLink: `/lightning/r/Medical_Event__c/${registro.Id}/view`,
                     nomeLocalizacao: registro.Location__r ? registro.Location__r.Name : 'Evento Virtual / Não Informado'
                 };
             });

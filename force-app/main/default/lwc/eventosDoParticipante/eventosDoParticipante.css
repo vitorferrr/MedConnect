@@ -1,0 +1,51 @@
+.card-container {
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(160, 170, 190, 0.12);
+    padding: 1.25rem;
+    border: 1px solid rgba(225, 230, 240, 0.7);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(130, 145, 175, 0.2);
+}
+
+.card-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid #F1F3F4;
+    padding-bottom: 0.5rem;
+}
+
+.event-title-link {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1A73E8;
+    text-decoration: none;
+}
+
+.event-title-link:hover {
+    text-decoration: underline;
+}
+
+.card-body-info p {
+    margin: 0.35rem 0;
+    color: #4A4A4A;
+    font-size: 0.9rem;
+}
+
+/* Badges em estilo Cápsula */
+.badge-base {
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+.badge-past { background-color: #F1F3F4; color: #5F6368; }
+.badge-future { background-color: #E8F0FE; color: #1A73E8; }

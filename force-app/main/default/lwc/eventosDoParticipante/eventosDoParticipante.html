@@ -2,19 +2,31 @@
     <lightning-card title="Agenda do Participante - MedConnect" icon-name="standard:coaching_program_attendance">
         <div class="slds-p-around_medium">
 
-            <!-- Implementação do Lightning Accordion com duas seções separadas -->
+            <!-- Implementação do Lightning Accordion -->
             <lightning-accordion allow-multiple-sections-open active-section-name="proximos">
                 
                 <!-- Próximos Eventos (Upcoming Events) -->
                 <lightning-accordion-section name="proximos" label={rotuloFuturos}>
                     <template if:true={haFuturos}>
-                        <lightning-datatable
-                            key-field="Id"
-                            data={listaFuturos}
-                            columns={colunasFuturas}
-                            hide-checkbox-column>
-                        </lightning-datatable>
+                        <div class="slds-grid slds-wrap slds-gutters">
+                            <template for:each={listaFuturos} for:item="evt">
+                                <div key={evt.Id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-bottom_medium">
+                                    <!-- CARD FLUTUANTE -->
+                                    <div class="card-container">
+                                        <div class="card-header-flex">
+                                            <a href={evt.linkEvento} class="event-title-link">{evt.nomeEvento}</a>
+                                            <span class={evt.badgeClass}>Próximo</span>
+                                        </div>
+                                        <div class="card-body-info">
+                                            <p>📅 <b>Início:</b> {evt.dataInicio}</p>
+                                            <p>📍 <b>Local:</b> {evt.localizacao}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
                     </template>
+                    
                     <template if:false={haFuturos}>
                         <div class="slds-p-around_small slds-text-color_weak">
                             Nenhuma inscrição ativa para próximos eventos médicos.
@@ -25,13 +37,25 @@
                 <!-- Eventos Passados (Past Events) -->
                 <lightning-accordion-section name="passados" label={rotuloPassados}>
                     <template if:true={haPassados}>
-                        <lightning-datatable
-                            key-field="Id"
-                            data={listaPassados}
-                            columns={colunasPassadas}
-                            hide-checkbox-column>
-                        </lightning-datatable>
+                        <div class="slds-grid slds-wrap slds-gutters">
+                            <template for:each={listaPassados} for:item="evt">
+                                <div key={evt.Id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-bottom_medium">
+                                    <!-- CARD FLUTUANTE -->
+                                    <div class="card-container">
+                                        <div class="card-header-flex">
+                                            <a href={evt.linkEvento} class="event-title-link">{evt.nomeEvento}</a>
+                                            <span class={evt.badgeClass}>Concluído</span>
+                                        </div>
+                                        <div class="card-body-info">
+                                            <p>📅 <b>Término:</b> {evt.dataFim}</p>
+                                            <p>📍 <b>Local:</b> {evt.localizacao}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
                     </template>
+                    
                     <template if:false={haPassados}>
                         <div class="slds-p-around_small slds-text-color_weak">
                             Nenhum histórico de eventos médicos finalizados encontrado.
